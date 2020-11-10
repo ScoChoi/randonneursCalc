@@ -3,10 +3,10 @@
 Author: Scott Choi, ascottychoi@gmail.com
 
 # ACP Controle Times
-From control location 0 - 200km: Minimum Speed is 15km/hr, Maximum Speed is 34km/hr
-From control location 200 - 400km: Minimum Speed is 15km/hr, Maximum Speed is 32km/hr
-From control location 400 - 600km: Minimum Speed is 15km/hr, Maximum Speed is 30km/hr
-From control location 600 - 1000km: Minimum Speed is 11.428km/hr, Maximum Speed is 28km/hr
+From control location 0 - 200km: Minimum Speed is 15km/hr, Maximum Speed is 34km/hr \n
+From control location 200 - 400km: Minimum Speed is 15km/hr, Maximum Speed is 32km/hr \n
+From control location 400 - 600km: Minimum Speed is 15km/hr, Maximum Speed is 30km/hr \n
+From control location 600 - 1000km: Minimum Speed is 11.428km/hr, Maximum Speed is 28km/hr \n
 When control location is greater than the brevet distance, open and close times are the same as if the control location equalled the brevet distance.
 
 # ACP Controle Times Special Cases
