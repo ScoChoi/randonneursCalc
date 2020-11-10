@@ -1,4 +1,4 @@
-# Randonneurs Calculator (For the Hardcore Cyclists)
+# Randonneurs Calculator (For the Hardcore Cyclist)
 
 Author: Scott Choi, ascottychoi@gmail.com
 
