@@ -17,3 +17,6 @@ When brevet distance is 400km, closing time for controls greater than or equal t
 # Notes
 Be advised that control distances should be at most 120% of the brevet distance
 The only selectable brevet distances are 200, 300, 400, 600, and 1000
+
+# How to Run
+Download docker and use the run.sh script inside the brevets directory.
