@@ -5,6 +5,14 @@ following rules described at https://rusa.org/octime_alg.html
 and https://rusa.org/pages/rulesForRiders
 """
 import arrow
+#  Note for CIS 322 Fall 2016:
+#  You MUST provide the following two functions
+#  with these signatures, so that I can write
+#  automated tests for grading.  You must keep
+#  these signatures even if you don't use all the
+#  same arguments.  Arguments are explained in the
+#  javadoc comments.
+#
 
 def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
    """
@@ -37,6 +45,8 @@ def open_time(control_dist_km, brevet_dist_km, brevet_start_time):
       elif control_dist_km < 1000:
          shiftM = round((speedMax[600] + (control_dist_km-600)/28) * 60)
          return startT.shift(minutes=+shiftM).isoformat()
+         
+   
 
 def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
    """
@@ -67,3 +77,4 @@ def close_time(control_dist_km, brevet_dist_km, brevet_start_time):
       elif control_dist_km < 1000:
          shiftM = round((frenchSpeedMin[600] + (control_dist_km-600)/11.428) * 60)
          return startT.shift(minutes=+shiftM).isoformat()
+   

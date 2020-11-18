@@ -1,5 +1,6 @@
 arrow
-Flask
+flask
 nose
 pep8
+pymongo
 autopep8

@@ -23,6 +23,8 @@
 
 </head>
 
+   <!-- Our own style sheet -->
+   <link rel="stylesheet" href="/static/css/calc.css" />
 
 <body>
 <!-- bootstrap requires a 'container' div around content -->
@@ -88,19 +90,19 @@
    {% for row in range(20) %}
     <tr class="control">
       <!-- Dist (mi) -->
-      <td><input name="miles" type="number" 
+      <td><input name="miles" type="number"
            min="0" max="900" size="5" /></td>
       <!-- Dist (km) -->
-      <td><input name="km" type="text"
+      <td><input name="km" type="number"
 	   min="0" max="1100" size="5" /> </td>
       <!-- Location (optional) -->
       <td><input name="location" type="text" 
         placeholder="Optional location name"
 	size="20" /> </td>
       <!-- Open time (read only, set by JavaScript function -->
-      <td><input name="open" type="datetime" value="" readonly /></td>
+      <td><input name="open" type="datetime" value=""  /></td>
       <!-- Close time (read only, set by JavaScript function -->
-      <td><input name="close" type="datetime" value="" readonly /></td>
+      <td><input name="close" type="datetime" value=""  /></td>
       <!-- Notes (error messages for this row) -->
       <td style="color:red;font-size:x-small;" class="notes"> &nbsp; </td>
     </tr>
@@ -110,6 +112,15 @@
   </div> <!-- row -->
 </form>
 
+<form id="submit">
+  <input type="submit"> <label style="color:red;font-size:small;" id="warning"></label>  </input>
+</form>
+
+<form action="/display">
+  <input type="submit" class="display" value="Display"></input>
+</form>
+
+
 <script type="text/javascript">
 
   var SCRIPT_ROOT = {{ request.script_root|tojson|safe }} ;
@@ -117,6 +128,8 @@
   // Pass calctimes a <td> element containing the data for a control.
   // It extracts the distance and calls the server to get times to
   // fill in open and close times in a human-readable format.
+  // (If we want to also keep the ISO-formatted times, we'll need to
+  // stash them in hidden fields.) 
   function calc_times(control) {
     var km = control.find("input[name='km']").val();
     var begin_date = $("#begin_date").val();
@@ -126,10 +139,11 @@
     var open_time_field = control.find("input[name='open']");
     var close_time_field = control.find("input[name='close']");
     
-    
     $.getJSON(TIME_CALC_URL, { km: km, brevet_dist: brevet_dist, begin_date: begin_date, begin_time: begin_time},
       // response handler
       function(data) {
+
+
          var times = data.result;
          console.log("Got a response: " +  times);
          console.log("Response.open = " + times.open);
@@ -212,7 +226,28 @@
              calc_times(control_entry);
           });
 
-     });   // end of what we do on document ready
+     });  
+     // end of what we do on document ready
+  $( "#submit" ).submit(function( event ) {
+    event.preventDefault();
+    ctr = 0;
+    console.log("THE SUBMIT BUTTON HAS BEEN PUSHED");
+    controlObj = $(".control");
+    controlObj.each(function(i) {
+      if ($(this).find("input[name='km']").val() != "") {
+        var open_time = $(this).find("input[name='open']").val();
+        var close_time = $(this).find("input[name='close']").val();
+        var km = $(this).find("input[name='km']").val();
+        ctr += 1;
+        console.log(ctr);
+        $.getJSON( "/_submit", { open_time: open_time, close_time: close_time, km: km, error: ""});
+      };
+    });
+    if (ctr == 0) {
+      console.log("CTR IS 0")
+      window.location.href="submit_error";
+    }
+  });
 
 </script>
 
