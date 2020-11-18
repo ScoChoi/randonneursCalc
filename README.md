@@ -14,6 +14,9 @@ From control location 0 - 60km use the following algorithm: control_location/20k
 When brevet distance is 200km, closing time for controls greater than or equal to 200km is 13hrs 30min
 When brevet distance is 400km, closing time for controls greater than or equal to 400km is 27hrs
 
+# Submit and Display Button
+When hitting submit it stores the km with the corresponding open and close times to the database. Then display will read from that database to display the result on a webpage.
+
 # Notes
 Be advised that control distances should be at most 120% of the brevet distance
 The only selectable brevet distances are 200, 300, 400, 600, and 1000
